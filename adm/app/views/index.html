@@ -1,0 +1,155 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>Media App</title>
+    <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(app) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/fullcalendar/fullcalendar.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/datetimepicker.css" />
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="vendor/ng-react-grid/css/ngReactGrid.css"/>
+     <link rel="stylesheet" href="vendor/angular-xeditable-0.1.8/css/xeditable.css"/>
+
+    <!-- endbuild -->
+  </head>
+  <body ng-app="educationMediaApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="row-fluid align-center" id="spinner" loader>
+        <img src="/images/image_load.gif" height="25px"/>
+    </div>
+    <!-- Add your site or application content here -->
+
+    <div id="wrapper">
+        <div ng-include="'partials/navbar'"></div>
+        <div ng-include="'partials/sideNavBar'"  ></div>
+
+        <div id="page-wrapper">
+            <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.breadcrumbProxy" ></ui-breadcrumbs>
+            <div ui-view></div>
+        </div>
+
+    </div>
+    <!--Application error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header alert-warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title alert alert-error" id="myModalLabel">Alert!</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--Application success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header alert-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title alert alert-error" >Success!</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--Application warning Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header alert-warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title alert alert-error" >Warning!</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- build:js(app) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="bower_components/fullcalendar/fullcalendar.js"></script>
+    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/sugar.min.js"></script>
+    <script src="vendor/ng-react-grid/js/ngReactGrid.min.js"></script>
+    <script src="vendor/angular-xeditable-0.1.8/js/xeditable.js"></script>
+    <script src="vendor/angular-xeditable-0.1.8/js/xeditable.min.js"></script>
+    <script src="scripts/jquery.metisMenu.js"></script>
+    <script src="vendor/angular-bootstrap-datetimepicker/datetimepicker.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/routes.js"></script>
+    <script src="scripts/factory/iconClassMapping.js"></script>
+    <script src="scripts/factory/appUtils.js"></script>
+    <script src="scripts/factory/spinner.js"></script>
+    <script src="scripts/directives/uiBreadcrumbs-directive.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/navbar.js"></script>
+    <script src="scripts/controllers/sideNavBar.js"></script>
+    <script src="scripts/controllers/breadcrumb.js"></script>
+    <script src="scripts/controllers/tooltip.js"></script>
+    <script src="scripts/controllers/googlePlaces.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    
+
+    <script src="scripts/modules/manageUsers/controllers/userProfileClient.js"></script>
+    <script src="scripts/modules/home/controllers/welcomeHome.js"></script>		
+    <script src="scripts/modules/home/controllers/processDetails.js"></script>		
+    <!-- endbuild -->
+
+</body>
+</html>
+

@@ -1,0 +1,155 @@
+<div ng-controller="user_profile">
+	<div class="profile-page" style="padding-top: 10px;">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-2">
+					<div class="user-info-left">
+						<br>
+						<img
+							ng-if="!userDetails.hiddenObject.profileImagePath && userSelectedClass.basicDetails.sex=='M'"
+							class="userProfileImage pull-right"
+							src="images/userProfile/male.png" width="100%"> <img
+							ng-if="!userDetails.hiddenObject.profileImagePath && userSelectedClass.basicDetails.sex=='F'"
+							class="userProfileImage pull-right"
+							src="images/userProfile/female.png" width="100%"> <img
+							alt="Profile photo not available"
+							ng-if="userDetails.hiddenObject.profileImagePath"
+							class="userProfileImage pull-right"
+							src="{{userDetails.hiddenObject.profileImagePath}}" width="125px" />
+						<legend></legend>
+						<h2 align="center">
+							<br> {{userDetails.hiddenObject.fullName}}<br>
+						</h2>
+						<div class="contact" style="text-align: center;">
+                            <button class="btn btn-success btn-sm" ng-click="openModal('updProfile')"><i class="fa fa-edit"></i> Edit Profile</button>
+						</div>
+                        <br/>
+                        <div class="contact" style="text-align: center;">
+                            <button class="btn btn-info btn-sm" ng-click="punchTime(true)" ng-show="toggle"> Check-In Time</button>
+                            <button class="btn btn-danger btn-sm" ng-click="punchTime(false)" ng-hide="toggle"> Check-Out Time</button>
+                        </div>
+					</div>
+				</div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <h3 style="color: #438EA9; font-weight: normal;">
+                            <i class="fa fa-user"></i> Basic Information
+                            <hr>
+                        </h3>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label>Registration ID</label>&nbsp;&nbsp;
+                                {{userSelectedClass.basicDetails.regID}}
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="name">Username </label>&nbsp;&nbsp;
+                                {{userSelectedClass.basicDetails.userName}}
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="name"> Date of Birth </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                {{userSelectedClass.basicDetails.DOB|date:'dd/MM/yyyy'}}
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="name"> Religion </label>&nbsp;&nbsp;
+                                {{religionCaste[userSelectedClass.basicDetails.religionId].___name___}}
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="name"> SMS Enabled </label>&nbsp;&nbsp; <a
+                                    ng-if="userSelectedClass.basicDetails.isSMSEnabled">Yes</a> <a
+                                    ng-if="!userSelectedClass.basicDetails.isSMSEnabled">No</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="name"> Email Enabled </label>&nbsp;&nbsp; <a
+                                    ng-if="userSelectedClass.basicDetails.isEmailEnabled">Yes</a> <a
+                                    ng-if="!userSelectedClass.basicDetails.isEmailEnabled">No</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="name">Gender</label>&nbsp;&nbsp; <span
+                                    ng-if="userSelectedClass.basicDetails.sex=='M'">Male</span> <span
+                                    ng-if="userSelectedClass.basicDetails.sex=='F'">Female</span>
+                            </div>
+
+                            <!-- 						<div class="col-sm-6"> -->
+                            <!-- 							<label>Last Login</label>&nbsp;&nbsp; 2 hours ago -->
+                            <!-- 						</div> -->
+                            <div class="col-sm-6">
+                                <label>Date Joined</label>&nbsp;&nbsp;
+                                {{userSelectedClass.basicDetails.createdAt | date: 'dd/MM/yyyy'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3 style="color: #438EA9; font-weight: normal;">
+                            <i class="fa fa-envelope-o"></i> Contact Information
+                            <hr>
+                        </h3>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label for="name">Email </label>&nbsp;&nbsp;
+                                {{userSelectedClass.contact.emailPrimary}}
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="name">Phone</label>&nbsp;&nbsp;
+                                {{userSelectedClass.contact.phonePrimary}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3 style="color: #438EA9; font-weight: normal;">
+                            <i class="fa fa-home"></i> Address Information
+                            <hr>
+                        </h3>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label for="name">Street1 </label>&nbsp;&nbsp;
+                                {{userSelectedClass.primaryAddress.street1}}
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label for="name">Street2</label>&nbsp;&nbsp;
+                                    {{userSelectedClass.primaryAddress.street2}}
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="name">City</label>&nbsp;&nbsp;
+                                    {{countryStateCity[userSelectedClass.primaryAddress.country][userSelectedClass.primaryAddress.state][userSelectedClass.primaryAddress.city].___name___}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label>District</label>&nbsp;&nbsp;
+                                    {{userSelectedClass.primaryAddress.district}}
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>State</label>&nbsp;&nbsp;
+                                    {{countryStateCity[userSelectedClass.primaryAddress.country][userSelectedClass.primaryAddress.state].___name___}}
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Country</label>&nbsp;&nbsp;
+                                    {{countryStateCity[userSelectedClass.primaryAddress.country].___name___}}
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Pincode</label>&nbsp;&nbsp;
+                                    {{userSelectedClass.primaryAddress.pincode}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+
+		</div>
+	</div>
+	<div ng-controller="manageUser_updateUser">
+		<div ng-include="'partials/modules/manageUsers/crudUserModal.html'"></div>
+		<div class="modal well" tabindex="-1" role="dialog" id="retryModel">
+			<div class="modal-header">
+				<h3>Are you sure ?</h3>
+			</div>
+			<div class="modal-body">{{alertText}}</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" ng-click="ok()">OK</button>
+				<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>

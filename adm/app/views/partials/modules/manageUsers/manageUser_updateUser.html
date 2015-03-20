@@ -1,0 +1,210 @@
+<div ng-controller="manageUser_updateUser" class="row" weight="100%">
+	<div class="row">
+		<div class="col-md-12 topbar">
+			<br>
+			<div class="col-md-9">
+				<div class="input-group">
+					<input ng-model="searchUserModel.searchText" clear-input
+						class="col-md-12 searchclass" placeholder="Enter User Name"
+						class="nodeSearchInputBox" /> <span class="input-group-addon"
+						id="datamodal" data-toggle="popover"> <i
+						class="fa fa-times"
+						ng-click="clearSearch();searchUser();getBackToMainUsersList()"></i>&nbsp;|&nbsp;
+						<i class="fa fa-search cursor-pointer"
+						ng-click="searchUser(); getBackToMainUsersList()"></i>&nbsp;|&nbsp;
+						<i ng-show="!isSearchBoxOpened"
+						class="fa fa-chevron-down cursor-pointer"
+						ng-click="openSearchBox()"></i> <i ng-show="isSearchBoxOpened"
+						class="fa fa-chevron-up cursor-pointer" ng-click="openSearchBox()"></i>
+					</span>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<!--<input class="control-label hide" height="0" width="0" type='file'
+					id="csvUploader"
+					onchange="angular.element(this).scope().uploadCsv(this)" />
+				<button class="btn btn-sm btn-info pull-right">
+					<i class="fa fa-users"> Batch Upload</i>
+					&lt;!&ndash;ng-click="batchAddUser()"&ndash;&gt;
+				</button>-->
+				<button class="btn btn-sm btn-warning pull-right"
+					ng-click="addUserOpenForm()">
+					<i class="fa fa-user">+&nbsp; Add User</i>
+				</button>
+			</div>
+
+		</div>
+	</div>
+	<div
+		ng-include="'partials/modules/manageUsers/advancedUserSearch.html'"></div>
+	<!-- Top Bar Ends -->
+	<br>
+	<div class="row">
+		<!-- ng-if="allUserClass.data" ng-show="!currentUserDetails" -->
+		<div class="col-md-12">
+			<div class="col-md-12">
+				<div id="head_nav">
+					<table
+						class="table table-bordered table-condensed table-striped table-hover userManageTable">
+						<thead class="theadclass">
+							<tr>
+								<th class="col-md-2">Reg ID</th>
+								<th class="col-md-3">Name</th>
+								<th class="col-md-3">Username</th>
+								<th class="col-md-2">User Type</th>
+								<th class="col-md-2">Actions</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="user in allUserClass.data">
+
+								<td class="col-md-2 t2class">{{user[0].regID}}</td>
+								<td class="col-md-3 t3class">{{user[0].firstName}}
+									{{user[0].middleName}} {{user[0].lastName}}</td>
+								<td class="col-md-3 t3class">{{user[0].userName}}</td>
+								<td class="col-md-2 t2class">{{userType[user[0].userType].___name___}}</td>
+								<td class="col-md-2 t2class"><a href="#"
+									data-toggle="tooltip" title="Click to view user details"><i
+										class="fa fa-eye" role="button" data-toggle="modal"
+										ng-click="getUserDetails(user[0],'view')"></i></a> &nbsp;|&nbsp;
+									<a href="#" data-toggle="tooltip"
+									title="Click to update user details"><i
+										class="fa fa-pencil" role="button" data-toggle="modal"
+										ng-click="getUserDetails(user[0],'update')"></i></a> &nbsp;|&nbsp;
+									<a href="#" data-toggle="tooltip" title="Click to delete User"><i
+										class="fa fa-times-circle" role="button" data-toggle="modal"
+										ng-click="getUserDetails(user[0],'delete')"></i></a> &nbsp;|&nbsp;
+									<a href="#" data-toggle="tooltip"
+									title="Click to reset password"><i class="fa  fa-cogs"
+										role="button" data-toggle="modal"
+										ng-click="openResetPasswdModal(user)"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
+	
+<!-- 	<table st-table="displayed" class="smart-table table-striped"> -->
+<!-- 	<thead> -->
+<!-- 	<tr> -->
+<!-- 		<th st-ratio="20" st-sort="firstName">Reg ID</th> -->
+<!-- 		<th st-ratio="20" st-sort="lastName">Name</th> -->
+<!-- 		<th st-ratio="10" st-sort="age">Username</th> -->
+<!-- 		<th st-ratio="30" st-sort="email">User Type</th> -->
+<!-- 		<th st-ratio="20" st-sort="balance">Actions</th> -->
+<!-- 	</tr> -->
+<!-- 	</thead> -->
+<!-- 	<tbody> -->
+<!-- 	<tr ng-repeat="user in allUserClass.data"> -->
+<!-- 		<td st-ratio="20">{{user.regID}}</td> -->
+<!-- 		<td st-ratio="20">{{user.firstName}} -->
+<!-- 									{{user.middleName}} {{user.lastName}}</td> -->
+<!-- 		<td st-ratio="10">{{user.userName}}</td> -->
+<!-- 		<td st-ratio="30">{{userType[user.userType].___name___}}</td> -->
+<!-- 		<td st-ratio="20"><a href="#" -->
+<!-- 									data-toggle="tooltip" title="Click to view user details"><i -->
+<!-- 										class="fa fa-eye" role="button" data-toggle="modal" -->
+<!-- 										ng-click="getUserDetails(user,'view')"></i></a> &nbsp;|&nbsp; -->
+<!-- 									<a href="#" data-toggle="tooltip" -->
+<!-- 									title="Click to update user details"><i -->
+<!-- 										class="fa fa-pencil" role="button" data-toggle="modal" -->
+<!-- 										ng-click="getUserDetails(user,'update')"></i></a> &nbsp;|&nbsp; -->
+<!-- 																			<a href="#" data-toggle="tooltip" title="Click to delete User"><i -->
+<!-- 										class="fa fa-times-circle" role="button" data-toggle="modal" -->
+<!-- 										ng-click="getUserDetails(user,'delete')"></i></a> &nbsp;|&nbsp;  -->
+<!-- 									<a href="#" data-toggle="tooltip" -->
+<!-- 									title="Click to reset password"><i class="fa  fa-cogs" -->
+<!-- 										role="button" data-toggle="modal" -->
+<!-- 										ng-click="openResetPasswdModal(user)"></i></a></td> -->
+<!-- 	</tr> -->
+<!-- 	</tbody> -->
+<!-- 	<tfoot> -->
+<!-- 	<tr> -->
+<!-- 		<td colspan="5" class="text-center"> -->
+<!-- 			<div  st-items-by-page="25" st-pagination=""></div> -->
+<!-- 		</td> -->
+<!-- 	</tr> -->
+<!-- 	</tfoot> -->
+<!-- </table> -->
+
+	
+				</div>
+			</div>
+		</div>
+		<div ng-include="'partials/modules/manageUsers/crudUserModal.html'"></div>
+		<div
+			ng-include="'partials/modules/manageUsers/resetPasswordModal.html'"></div>
+
+		<div class="modal well" tabindex="-1" role="dialog" id="retryModel">
+			<div class="modal-header">
+				<h3>Are you sure ?</h3>
+			</div>
+			<div class="modal-body">{{alertText}}</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" ng-click="ok()">OK</button>
+				<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+			</div>
+		</div>
+		<!-- <script>
+            $(function(){
+                var w = $(window).width();
+                if(w>1000) {
+                    $(document).scroll(function() {
+                        if (($(this).scrollTop() > 80) && (w > 1000)) {
+                            $(".userManageTable .theadclass").addClass('theadclassclassnew1');
+                            $(".userManageTable .theadclass tr").addClass('row');
+                        } else {
+                            $(".userManageTable .theadclass").removeClass('theadclassclassnew1');
+                            $(".userManageTable .theadclass tr").removeClass('row');
+                        }
+                    });
+                }
+
+                if(w<768){
+                    $(".t3class").removeClass("col-md-3");
+                    $(".t2class").removeClass("col-md-2");
+                    $(".t1class").removeClass("col-md-1");
+                    $(".t12class").addClass("table");
+                    $(".child-books-container").addClass("table");
+                }else{
+                    $(".t3class").addClass("col-md-3");
+                    $(".t2class").addClass("col-md-2");
+                    $(".t1class").addClass("col-md-1");
+                    $(".t12class").removeClass("table");
+                    $(".child-books-container").removeClass("table");
+                }
+                $( window ).resize(function() {
+                    var w = $(window).width();
+                    if(w<768){
+                        $(".t3class").removeClass("col-md-3");
+                        $(".t2class").removeClass("col-md-2");
+                        $(".t1class").removeClass("col-md-1");
+                        $(".t12class").addClass("table");
+                        $(".child-books-container").addClass("table");
+                    }else{
+                        $(".t3class").addClass("col-md-3");
+                        $(".t2class").addClass("col-md-2");
+                        $(".t1class").addClass("col-md-1");
+                        $(".child-books-container").removeClass("table");
+                        $(".t12class").removeClass("table");
+                    }
+
+                    if(w>1000) {
+                        $(document).scroll(function() {
+                            if (($(this).scrollTop() > 80) && (w > 1000)) {
+                                $(".userManageTable .theadclass").addClass('theadclassclassnew1');
+                                $(".userManageTable .theadclass tr").addClass('row');
+                            } else {
+                                $(".userManageTable .theadclass").removeClass('theadclassclassnew1');
+                                $(".userManageTable .theadclass tr").removeClass('row');
+                            }
+                        });
+                    }
+                });
+            });
+        </script>-->
+	</div>
+
+</div>
+
+

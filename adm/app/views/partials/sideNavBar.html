@@ -1,0 +1,80 @@
+<nav class="navbar-default navbar-static-side" role="navigation"
+	ng-controller="SideNavBarCtrl">
+	<div id="nav-main" class="sidebar-collapse">
+		<ul class="nav " id="side-menu">
+			<!-- <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" style="line-height:1.7;">
+                                    <i class="{{iconClassMapping.search}}"></i>
+                                </button>
+                            </span>
+                </div>
+                &lt;!&ndash; /input-group &ndash;&gt;
+            </li>-->
+			
+			<li ng-repeat="menuItem in menu"><a
+				ng-if="menuItem.abstract==true"
+				ng-class="{active: $state.includes(menuItem.state)}"
+				ng-click="toggleMenu(menuItem,menuItem.collapse,$event)"> <i
+					class="{{iconClassMapping[menuItem.icon]}}">
+					</i>&nbsp;&nbsp;<span
+					class="menuName"> {{menuItem.name}}</span> <i class="pull-right"
+					ng-class="!menuItem.collapse?'fa fa-chevron-up':'fa fa-chevron-down'"></i></a>
+				<a class="collapsediv" ng-if="menuItem.abstract!=true"
+				ui-sref="{{menuItem.state}}"
+				ng-class="{active: $state.includes(menuItem.state)}"> <i
+					class="{{iconClassMapping[menuItem.icon]}}"></i>&nbsp;&nbsp;<span
+					class="menuName">{{menuItem.name}}</span>
+			</a> <!-- /.nav-second-level -->
+				<ul class="nav nav-second-level" ng-if="menuItem.childLinks"
+					class="sideNavbar" ng-hide="menuItem.collapse">
+					<li ng-repeat="childMenuItem in menuItem.childLinks"><a
+						class="collapsediv" ui-sref="{{childMenuItem.state}}"
+						ng-class="{activeSubMenu: $state.includes(childMenuItem.state)}"><i
+							class="{{iconClassMapping[childMenuItem.icon]}}"></i>&nbsp;<span
+							class="menuName"> {{childMenuItem.name}}</span></span></a></li>
+
+				</ul>
+            </li>
+
+
+            <li><a id="smallSidenav" style="padding: 5px 16px 21px 16px;"><i style="font-size:14px;"
+                    class="pull-right glyphicon glyphicon-circle-arrow-left"></i></a></li>
+            <li><a id="largeSidenav" style="padding: 5px 16px 21px 16px;"><i style="font-size:14px;"
+                    class="pull-left glyphicon glyphicon-circle-arrow-right"></i></a></li>
+
+		</ul>
+		<!-- /#side-menu -->
+	</div>
+	<script>
+        $(function(){
+            var windowWidth = $(window).width();
+            if(windowWidth < 992){
+                var navMain = $("#nav-main");
+
+                navMain.on("click", "a.collapsediv", null, function () {
+                    navMain.collapse('hide');
+                });
+            }
+            $("#largeSidenav").hide();
+            $("#smallSidenav").click(function(){
+                $("#largeSidenav").show();
+                $("#smallSidenav").hide();
+                $('#page-wrapper').animate({ 'margin-left': '70px'}, 500);
+                $('.navbar-static-side').animate({ 'width': '70px'}, 500);
+                $(".menuName").hide();
+            });
+            $("#largeSidenav").click(function(){
+                $("#largeSidenav").hide();
+                $("#smallSidenav").show();
+                $('#page-wrapper').animate({ 'margin-left': '250px'}, 500);
+                $('.navbar-static-side').animate({ 'width': '250px'}, 500);
+                $(".menuName").show();
+            });
+        });
+    </script>
+	<!-- /.sidebar-collapse -->
+</nav>
+<!-- /.navbar-static-side -->

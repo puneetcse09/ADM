@@ -1,0 +1,116 @@
+<div ng-controller="welcomeHome" ng-init="loadSmy()">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-condensed">
+								<thead>
+									<tr>
+										<td class="text-left"><strong>Name</strong></td>
+										<td class="text-center"><strong>Price</strong></td>
+										<td class="text-center"><strong>Quantity</strong></td>
+										<td class="text-right"><strong>Action</strong></td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="school in searchResult">
+										<td class="text-left">{{school.name}}</td>
+										<td class="text-center">{{school[0].firstName}}
+											{{school[0].middleName}} {{school[0].lastName}}</td>
+										<td class="text-center">{{schoolType[school[0].schoolType].___name___}}</td>
+										<td class="text-right">
+											<!-- 										<a data-toggle="tooltip" --> <!-- 											title="Click to view school details"><i class="fa fa-eye" -->
+											<!-- 												role="button" data-toggle="modal" --> <!-- 												ng-click="getschoolDetails(school[0],'view')"></i></a> &nbsp;|&nbsp; -->
+											<!-- 											<a data-toggle="tooltip" --> <!-- 											title="Click to update school details"><i -->
+											<!-- 												class="fa fa-pencil" role="button" data-toggle="modal" -->
+											<!-- 												ng-click="getschoolDetails(school[0],'update')"></i></a> -->
+											<!-- 											&nbsp;|&nbsp; <a data-toggle="tooltip" -->
+											<!-- 											title="Click to delete school"><i --> <!-- 												class="fa fa-times-circle" role="button" data-toggle="modal" -->
+											<!-- 												ng-click="getschoolDetails(school[0],'delete')"></i></a> -->
+											<!-- 											&nbsp;|&nbsp; --> <a
+											data-toggle="tooltip" title="Click to select"><i
+												class="fa  fa-cogs" role="button" data-toggle="modal"
+												ng-click="processDetails(school)"></i></a>
+										</td>
+									</tr>
+								</tbody>
+
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<style>
+.height {
+	min-height: 200px;
+}
+
+.icon {
+	font-size: 47px;
+	color: #5CB85C;
+}
+
+.iconbig {
+	font-size: 77px;
+	color: #5CB85C;
+}
+
+.table>tbody>tr>.emptyrow {
+	border-top: none;
+}
+
+.table>thead>tr>.emptyrow {
+	border-bottom: none;
+}
+
+.table>tbody>tr>.highrow {
+	border-top: 3px solid;
+}
+</style>
+
+	<!-- 	<div class="col-md-12"> -->
+	<!-- 		<div class="col-md-10"> -->
+	<!-- 			<div id="head_nav"> -->
+	<!-- 				<table -->
+	<!-- 					class="table table-bordered table-condensed table-striped table-hover schoolManageTable"> -->
+	<!-- 					<thead class="theadclass"> -->
+	<!-- 						<tr> -->
+	<!-- 							<th class="col-md-2">Name</th> -->
+	<!-- 							<th class="col-md-2">Name</th> -->
+	<!-- 							<th class="col-md-2">schoolname</th> -->
+	<!-- 							<th class="col-md-2">school Type</th> -->
+	<!-- 							<th class="col-md-2">Actions</th> -->
+	<!-- 						</tr> -->
+	<!-- 					</thead> -->
+	<!-- 					<tbody> -->
+	<!-- 						<tr ng-repeat="school in searchResult"> -->
+	<!-- 							<td class="col-md-2 t2class">{{school.name}}</td> -->
+	<!-- 							<td class="col-md-2 t3class">{{school[0].firstName}}</td> -->
+	<!-- 							<td class="col-md-2 t3class">{{school[0].schoolName}}</td> -->
+	<!-- 							<td class="col-md-2 t2class">{{schoolType[school[0].schoolType].___name___}}</td> -->
+	<!-- 							<td class="col-md-2 t2class"><a href="#" -->
+	<!-- 								data-toggle="tooltip" title="Click to view school details"><i -->
+	<!-- 									class="fa fa-eye" role="button" data-toggle="modal" -->
+	<!-- 									ng-click="getschoolDetails(school[0],'view')"></i></a> &nbsp;|&nbsp; <a -->
+	<!-- 								href="#" data-toggle="tooltip" -->
+	<!-- 								title="Click to update school details"><i class="fa fa-pencil" -->
+	<!-- 									role="button" data-toggle="modal" -->
+	<!-- 									ng-click="getschoolDetails(school[0],'update')"></i></a> &nbsp;|&nbsp; -->
+	<!-- 								<a href="#" data-toggle="tooltip" title="Click to delete school"><i -->
+	<!-- 									class="fa fa-times-circle" role="button" data-toggle="modal" -->
+	<!-- 									ng-click="getschoolDetails(school[0],'delete')"></i></a> &nbsp;|&nbsp; -->
+	<!-- 								<a href="#" data-toggle="tooltip" -->
+	<!-- 								title="Click to reset password"><i class="fa  fa-cogs" -->
+	<!-- 									role="button" data-toggle="modal" -->
+	<!-- 									ng-click="openResetPasswdModal(school)"></i></a></td> -->
+	<!-- 						</tr> -->
+	<!-- 					</tbody> -->
+	<!-- 				</table> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 	</div> -->
